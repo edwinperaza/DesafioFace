@@ -1,10 +1,12 @@
-package com.desafiolatam.desafioface;
+package com.desafiolatam.desafioface.splash;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class SplashActivity extends AppCompatActivity {
+import com.desafiolatam.desafioface.R;
+
+public class SplashActivity extends AppCompatActivity implements LoginCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,5 +21,15 @@ public class SplashActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+    }
+
+    @Override
+    public void signed() {
+        
+    }
+
+    @Override
+    public void signUp() {
+
     }
 }

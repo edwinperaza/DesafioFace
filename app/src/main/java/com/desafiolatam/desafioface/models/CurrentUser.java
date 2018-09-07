@@ -1,6 +1,6 @@
 package com.desafiolatam.desafioface.models;
 
-public class CurrentUser {
+public class CurrentUser extends SugarBase {
 
     private String name;
     private String photo_url;
