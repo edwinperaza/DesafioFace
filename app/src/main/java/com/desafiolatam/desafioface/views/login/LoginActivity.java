@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements SessionCallback 
                 String action = intent.getAction();
                 if (RecentUserService.USERS_FINISHED.equals(action)) {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
-
+                    finish();
                 }
             }
         };
