@@ -1,6 +1,11 @@
 package com.desafiolatam.desafioface.views.login;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +14,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.desafiolatam.desafioface.R;
+import com.desafiolatam.desafioface.background.RecentUserService;
+import com.desafiolatam.desafioface.views.MainActivity;
+
+import static com.desafiolatam.desafioface.background.RecentUserService.USERS_FINISHED;
 
 
 public class LoginActivity extends AppCompatActivity implements SessionCallback {
@@ -16,6 +25,8 @@ public class LoginActivity extends AppCompatActivity implements SessionCallback 
     private TextInputLayout mailWrapper, passWrapper;
     private EditText mailEt, passEt;
     private Button button;
+    private IntentFilter intentFilter;
+    private BroadcastReceiver broadcastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +54,31 @@ public class LoginActivity extends AppCompatActivity implements SessionCallback 
             }
         });
 
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(USERS_FINISHED);
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+                if (RecentUserService.USERS_FINISHED.equals(action)) {
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
+                }
+            }
+        };
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
     }
 
     private void restoredView() {
@@ -68,7 +104,7 @@ public class LoginActivity extends AppCompatActivity implements SessionCallback 
 
     @Override
     public void success() {
-        Toast.makeText(this, "FUNCIONA", Toast.LENGTH_LONG).show();
+        RecentUserService.startActionRecentUsers(this);
     }
 
     @Override
