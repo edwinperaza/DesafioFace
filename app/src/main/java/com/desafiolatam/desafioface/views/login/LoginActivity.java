@@ -6,11 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.desafiolatam.desafioface.R;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements SessionCallback {
 
     private TextInputLayout mailWrapper, passWrapper;
     private EditText mailEt, passEt;
@@ -37,10 +38,42 @@ public class LoginActivity extends AppCompatActivity {
                 passWrapper.setVisibility(View.GONE);
                 button.setVisibility(View.GONE);
 
+                new Signin(LoginActivity.this).toServer(email, pass);
 
             }
         });
 
     }
 
+    private void restoredView() {
+        mailEt.setError(null);
+        passEt.setError(null);
+        mailWrapper.setVisibility(View.VISIBLE);
+        passWrapper.setVisibility(View.VISIBLE);
+        button.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void requiredField() {
+        restoredView();
+        mailEt.setError("REQUERIDO");
+        passEt.setError("REQUERIDO");
+    }
+
+    @Override
+    public void mailFormat() {
+        restoredView();
+        mailEt.setError("FORMATO INCORRECTO");
+    }
+
+    @Override
+    public void success() {
+        Toast.makeText(this, "FUNCIONA", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void failure() {
+        restoredView();
+        Toast.makeText(this, "Mail o password incorrecto", Toast.LENGTH_LONG).show();
+    }
 }
