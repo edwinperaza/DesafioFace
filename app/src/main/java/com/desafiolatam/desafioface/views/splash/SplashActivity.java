@@ -1,4 +1,4 @@
-package com.desafiolatam.desafioface.splash;
+package com.desafiolatam.desafioface.views.splash;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,7 +25,7 @@ public class SplashActivity extends AppCompatActivity implements LoginCallback {
 
     @Override
     public void signed() {
-        
+
     }
 
     @Override

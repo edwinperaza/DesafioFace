@@ -1,4 +1,4 @@
-package com.desafiolatam.desafioface.splash;
+package com.desafiolatam.desafioface.views.splash;
 
 public interface LoginCallback {
 

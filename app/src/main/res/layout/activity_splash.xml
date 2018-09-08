@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="32dp"
-    tools:context="com.desafiolatam.desafioface.splash.SplashActivity">
+    tools:context=".views.splash.SplashActivity">
 
     <ImageView
         android:layout_width="wrap_content"

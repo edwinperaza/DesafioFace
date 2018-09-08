@@ -1,4 +1,4 @@
-package com.desafiolatam.desafioface.login;
+package com.desafiolatam.desafioface.views.login;
 
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
                 passWrapper.setVisibility(View.GONE);
                 button.setVisibility(View.GONE);
 
-                
+
             }
         });
 

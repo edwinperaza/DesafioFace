@@ -1,4 +1,4 @@
-package com.desafiolatam.desafioface.splash;
+package com.desafiolatam.desafioface.views.splash;
 
 import com.desafiolatam.desafioface.models.CurrentUser;
 
